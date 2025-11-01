@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Emp_10Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dept">
+    <Key>
+      <PropertyRef Name="dept_id" />
+    </Key>
+    <Property Name="dept_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dept_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="desg">
+    <Key>
+      <PropertyRef Name="desg_id" />
+    </Key>
+    <Property Name="desg_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desg_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Emp">
+    <Key>
+      <PropertyRef Name="EmpNo" />
+    </Key>
+    <Property Name="EmpNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="dob" Type="date" />
+    <Property Name="designation" Type="int" />
+    <Property Name="dept" Type="int" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_Emp_dept1">
+    <End Role="dept" Type="Self.dept" Multiplicity="0..1" />
+    <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dept">
+        <PropertyRef Name="dept_id" />
+      </Principal>
+      <Dependent Role="Emp">
+        <PropertyRef Name="dept" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emp_desg1">
+    <End Role="desg" Type="Self.desg" Multiplicity="0..1" />
+    <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="desg">
+        <PropertyRef Name="desg_id" />
+      </Principal>
+      <Dependent Role="Emp">
+        <PropertyRef Name="designation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Emp_10ModelStoreContainer">
+    <EntitySet Name="dept" EntityType="Self.dept" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="desg" EntityType="Self.desg" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp" EntityType="Self.Emp" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Emp_dept1" Association="Self.FK_Emp_dept1">
+      <End Role="dept" EntitySet="dept" />
+      <End Role="Emp" EntitySet="Emp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emp_desg1" Association="Self.FK_Emp_desg1">
+      <End Role="desg" EntitySet="desg" />
+      <End Role="Emp" EntitySet="Emp" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

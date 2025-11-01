@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Emp_10Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dept">
+    <Key>
+      <PropertyRef Name="dept_id" />
+    </Key>
+    <Property Name="dept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dept_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Emps" Relationship="Self.FK_Emp_dept1" FromRole="dept" ToRole="Emp" />
+  </EntityType>
+  <EntityType Name="desg">
+    <Key>
+      <PropertyRef Name="desg_id" />
+    </Key>
+    <Property Name="desg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="desg_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Emps" Relationship="Self.FK_Emp_desg1" FromRole="desg" ToRole="Emp" />
+  </EntityType>
+  <EntityType Name="Emp">
+    <Key>
+      <PropertyRef Name="EmpNo" />
+    </Key>
+    <Property Name="EmpNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dob" Type="DateTime" Precision="0" />
+    <Property Name="designation" Type="Int32" />
+    <Property Name="dept" Type="Int32" />
+    <Property Name="salary" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="dept1" Relationship="Self.FK_Emp_dept1" FromRole="Emp" ToRole="dept" />
+    <NavigationProperty Name="desg" Relationship="Self.FK_Emp_desg1" FromRole="Emp" ToRole="desg" />
+  </EntityType>
+  <Association Name="FK_Emp_dept1">
+    <End Role="dept" Type="Self.dept" Multiplicity="0..1" />
+    <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dept">
+        <PropertyRef Name="dept_id" />
+      </Principal>
+      <Dependent Role="Emp">
+        <PropertyRef Name="dept" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emp_desg1">
+    <End Role="desg" Type="Self.desg" Multiplicity="0..1" />
+    <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="desg">
+        <PropertyRef Name="desg_id" />
+      </Principal>
+      <Dependent Role="Emp">
+        <PropertyRef Name="designation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Emp_10Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="depts" EntityType="Self.dept" />
+    <EntitySet Name="desgs" EntityType="Self.desg" />
+    <EntitySet Name="Emps" EntityType="Self.Emp" />
+    <AssociationSet Name="FK_Emp_dept1" Association="Self.FK_Emp_dept1">
+      <End Role="dept" EntitySet="depts" />
+      <End Role="Emp" EntitySet="Emps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emp_desg1" Association="Self.FK_Emp_desg1">
+      <End Role="desg" EntitySet="desgs" />
+      <End Role="Emp" EntitySet="Emps" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

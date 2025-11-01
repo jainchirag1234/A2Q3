@@ -1,0 +1,57 @@
+﻿@model IEnumerable<A2Q3.Models.Emp>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dept1.dept_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.desg.desg_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dob)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dept1.dept_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.desg.desg_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmpNo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmpNo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmpNo })
+        </td>
+    </tr>
+}
+
+</table>

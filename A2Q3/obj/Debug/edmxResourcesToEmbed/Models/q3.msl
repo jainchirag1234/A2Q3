@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Emp_10ModelStoreContainer" CdmEntityContainer="Emp_10Entities">
+    <EntitySetMapping Name="depts">
+      <EntityTypeMapping TypeName="Emp_10Model.dept">
+        <MappingFragment StoreEntitySet="dept">
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="desgs">
+      <EntityTypeMapping TypeName="Emp_10Model.desg">
+        <MappingFragment StoreEntitySet="desg">
+          <ScalarProperty Name="desg_id" ColumnName="desg_id" />
+          <ScalarProperty Name="desg_name" ColumnName="desg_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emps">
+      <EntityTypeMapping TypeName="Emp_10Model.Emp">
+        <MappingFragment StoreEntitySet="Emp">
+          <ScalarProperty Name="EmpNo" ColumnName="EmpNo" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="dept" ColumnName="dept" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<A2Q3.Models.Emp>
+
+@{
+    ViewBag.Title = "Search Employees by Designation";
+}
+
+<h2>Search Employees by Designation</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Select Designation</label>
+        @Html.DropDownList("designation", (SelectList)ViewBag.DesignationList, "Select Designation", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning mt-2">@ViewBag.Message</div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <h3>Results</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Emp No</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>Salary</th>
+        </tr>
+
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.EmpNo</td>
+                <td>@emp.name</td>
+                <td>@emp.desg.desg_name</td>
+                <td>@emp.dept1.dept_name</td>
+                <td>@emp.salary</td>
+            </tr>
+        }
+    </table>
+}
