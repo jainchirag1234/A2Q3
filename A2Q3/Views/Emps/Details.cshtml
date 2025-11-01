@@ -1,0 +1,58 @@
+﻿@model A2Q3.Models.Emp
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Emp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dob)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dept1.dept_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dept1.dept_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.desg.desg_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.desg.desg_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

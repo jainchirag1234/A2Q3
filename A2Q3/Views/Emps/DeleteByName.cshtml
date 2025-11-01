@@ -1,0 +1,26 @@
+﻿@model A2Q3.Models.Emp
+@{
+    ViewBag.Title = "Delete Employee By Name";
+}
+
+<h2>Delete Employee By Name</h2>
+
+@using (Html.BeginForm("DeleteByName", "Emps", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Enter Employee Name</label>
+        <input type="text" name="name" class="form-control" required />
+    </div>
+
+    <button class="btn btn-danger" type="submit">Delete Employee</button>
+}
+
+@if (ViewBag.Message != null)
+{
+    <br />
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+
